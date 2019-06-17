@@ -1,5 +1,4 @@
 ﻿
-
 namespace food.common.Models
 {
     using System;
@@ -13,5 +12,10 @@ namespace food.common.Models
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
         public DateTime PublishOn { get; set; }
+        public override string ToString()
+        {
+            return this.Description;
+            
+        }
     }
 }
