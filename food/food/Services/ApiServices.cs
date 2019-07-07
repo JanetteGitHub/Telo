@@ -6,6 +6,7 @@ namespace food.Services
     using System.Net.Http;
     using System.Threading.Tasks;
     using common.Models;
+    using Helpers;
     using Newtonsoft.Json;
     using Plugin.Connectivity;
 
@@ -18,7 +19,7 @@ namespace food.Services
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "please turn on your internet settings"
+                    Message = Languages.TurnOnInternet,
                 };
             }
             var isRechable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
@@ -27,7 +28,7 @@ namespace food.Services
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "No internet connection"
+                    Message = Languages.NoInternet,
                 };
             }
             return new Response
