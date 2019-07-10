@@ -102,23 +102,50 @@ namespace food.backend.Controllers
                 return HttpNotFound();
 
             }
-            return View(product);
+
+            var view = this.ToView(product);
+            return View(view);
         }
 
-        
+        private ProductView ToView(Product product)
+        {
+            return new ProductView
+            {
+                Description = product.Description,
+                ImagePath = product.ImagePath,
+                IsAvailable = product.IsAvailable,
+                Price = product.Price,
+                ProductId = product.ProductId,
+                PublishOn = product.PublishOn,
+                Remarks = product.Remarks,
+            };
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Product product)
+        public async Task<ActionResult> Edit(ProductView view)
         {
             if (ModelState.IsValid)
             {
+                var pic = view.ImagePath;
+                var folder = "~/Content/Products";
+
+                if (view.ImageFile != null)
+                {
+
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = $"{folder}/{pic}";
+
+                }
+
+                var product = this.ToProduct(view, pic);
                 this.db.Entry(product).State = EntityState.Modified;
                 await this.db.SaveChangesAsync();
                 return RedirectToAction("Index");
 
             }
 
-            return View(product);
+            return View(view);
         }
 
         
