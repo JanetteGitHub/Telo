@@ -1,6 +1,9 @@
 namespace food.backend.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<food.backend.Models.LocalDataContext>
     {
@@ -8,7 +11,6 @@ namespace food.backend.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "food.backend.Models.LocalDataContext";
         }
 
         protected override void Seed(food.backend.Models.LocalDataContext context)

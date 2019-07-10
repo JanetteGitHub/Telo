@@ -1,6 +1,7 @@
 ﻿
 namespace food.Domain.Models
 {
+    using common.Models;
     using System.Data.Entity;
     public class DataContext:DbContext 
     {
@@ -9,6 +10,6 @@ namespace food.Domain.Models
 
         }
 
-        public System.Data.Entity.DbSet<food.common.Models.Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
