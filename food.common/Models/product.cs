@@ -22,6 +22,19 @@ namespace food.common.Models
         [Display(Name = "Publish On ")]
         [DataType(DataType.Date)]
         public DateTime PublishOn { get; set; }
+
+        public string ImageFullPath
+        {
+            get { 
+            if (string.IsNullOrEmpty(this.ImagePath))
+            {
+                return null;
+
+            }
+            return $"https://foodbackend20190615064305.azurewebsites.net/{this.ImagePath.Substring(1)}";
+
+            }
+        }
         public override string ToString()
         {
             return this.Description;
