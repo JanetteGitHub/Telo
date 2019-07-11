@@ -196,6 +196,9 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Products\gato_naranja_joven.png" />
+    <Content Include="Content\Products\jarra_limon1.png" />
+    <Content Include="Content\Products\Pechuga.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -294,7 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Products\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
