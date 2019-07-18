@@ -39,7 +39,7 @@ namespace food.Helpers
                         "key '{0}'was not found in resources '{1}' for culture '{2}'",
                         Text, ResourceId, ci.Name), "Text");
 #else
-                translation = Text //
+                translation = Text; //
 #endif
             }
             return translation;

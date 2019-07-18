@@ -8,6 +8,9 @@
              x:Class="food.Views.ProductsPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="{i18n:Traslate Products}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_action_add_circle" Command="{Binding AddProductCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout 
             BindingContext="{Binding Products}"
@@ -34,12 +37,18 @@
                                     WidthRequest="100">
                                     
                                 </Image>
-                                <Label 
-                                    FontAttributes="Bold"
+                                <StackLayout
                                     Grid.Column="1"
-                                    Text="{Binding Description}"
                                     VerticalOptions="Center">
-                                </Label>
+                                    <Label 
+                                    FontAttributes="Bold"
+                                    Text="{Binding Description}">
+                                    </Label>
+                                    <Label                                 
+                                    Text="{Binding Remarks}">
+                                    </Label>
+                                </StackLayout>
+                                
                                 <Label 
                                     Grid.Column="2"
                                     HorizontalOptions="End"

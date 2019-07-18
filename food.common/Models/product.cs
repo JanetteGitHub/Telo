@@ -28,7 +28,7 @@ namespace food.common.Models
             get { 
             if (string.IsNullOrEmpty(this.ImagePath))
             {
-                return null;
+                return "productDefault";
 
             }
             return $"https://foodbackend20190615064305.azurewebsites.net/{this.ImagePath.Substring(1)}";
