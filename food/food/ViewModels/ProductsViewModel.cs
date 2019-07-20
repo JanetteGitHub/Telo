@@ -13,14 +13,17 @@ namespace food.ViewModels
 
     public class ProductsViewModel:BaseViewModel 
     {
+        #region Attributes
         private ApiServices apiService;
         private bool isRefreshing;
+        #endregion
 
+        #region Properties
         private ObservableCollection<Product> products;
 
         public ObservableCollection<Product> Products
         {
-            get{ return this.products; }
+            get { return this.products; }
             set { this.SetValue(ref this.products, value); }
         }
         public bool IsRefreshing
@@ -28,20 +31,40 @@ namespace food.ViewModels
             get { return this.isRefreshing; }
             set { this.SetValue(ref this.isRefreshing, value); }
         }
+        #endregion
+
+        #region Constructors
         public ProductsViewModel()
         {
+            instance = this;
             this.apiService = new ApiServices();
             this.LoadProducts();
         }
+        #endregion
 
+        #region Singleton
+        private static ProductsViewModel instance;
+        public static ProductsViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                return new ProductsViewModel();
+            }
+            return instance;
+        }
+        
+           
+        #endregion
+
+        #region Methods
         private async void LoadProducts()
         {
             this.IsRefreshing = true;
             var connection = await this.apiService.CheckConnection();
-            if(!connection.IsSuccess)
+            if (!connection.IsSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message,Languages.Accept);
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
                 return;
 
             }
@@ -52,19 +75,24 @@ namespace food.ViewModels
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert(Languages.Error,response.Message,Languages.Accept);
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
             var list = (List<Product>)response.Result;
             this.Products = new ObservableCollection<Product>(list);
             this.IsRefreshing = false;
         }
+        #endregion
+
+        #region Commands
         public ICommand RefreshCommand
-        { get
+        {
+            get
             {
                 return new RelayCommand(LoadProducts);
             }
-          
-        }
+
+        } 
+        #endregion
     }
 }
