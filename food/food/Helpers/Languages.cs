@@ -73,5 +73,21 @@ namespace food.Helpers
         {
             get { return Resource.PriceError; }
         }
+        public static string ImageSource
+        {
+            get { return Resource.ImageSource; }
+        }
+        public static string FromGalery
+        {
+            get { return Resource.FromGalery; }
+        }
+        public static string NewPicture
+        {
+            get { return Resource.NewPicture; }
+        }
+        public static string Cancel
+        {
+            get { return Resource.Cancel; }
+        }
     }
 }

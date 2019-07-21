@@ -3,6 +3,8 @@ namespace food.common.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Product
     {
         [Key]
@@ -15,7 +17,7 @@ namespace food.common.Models
         public string Remarks { get; set; }
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
-        [DisplayFormat(DataFormatString ="{0:C2}",ApplyFormatInEditMode =false)]
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
         public decimal Price { get; set; }
         [Display(Name = "Is Available")]
         public bool IsAvailable { get; set; }
@@ -23,15 +25,24 @@ namespace food.common.Models
         [DataType(DataType.Date)]
         public DateTime PublishOn { get; set; }
 
+
+        [NotMapped]
+        public byte[] ImageArray { get; set; }
+
+
         public string ImageFullPath
         {
             get { 
+
             if (string.IsNullOrEmpty(this.ImagePath))
             {
                 return "productDefault";
 
             }
-            return $"https://foodbackend20190615064305.azurewebsites.net/{this.ImagePath.Substring(1)}";
+            return $"https://foodapi20190615091957.azurewebsites.net/{ this.ImagePath.Substring(1)}";
+
+
+
 
             }
         }

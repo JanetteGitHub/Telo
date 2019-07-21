@@ -7,13 +7,19 @@ namespace food.ViewModels
     using GalaSoft.MvvmLight.Command;
     using Xamarin.Forms;
     using food.common.Models;
+    using Plugin.Media.Abstractions;
+    using System;
+    using Plugin.Media;
 
     public class AddProductViewModel:BaseViewModel
     {
         #region Attributes
+        private MediaFile file;
+        private ImageSource imageSource;
         private ApiServices apiService;
         private bool isRunning;
         private bool isEnabled;
+
         #endregion
         #region Properties
         public string Description { get; set; }
@@ -29,15 +35,72 @@ namespace food.ViewModels
             get { return this.isEnabled; }
             set { this.SetValue(ref this.isEnabled, value); }
         }
+        public ImageSource ImageSource
+        {
+            get { return this.imageSource; }
+            set { this.SetValue(ref this.imageSource, value); }
+        }
         #endregion
+
         #region Constructors
         public AddProductViewModel()
         {
+
             this.apiService = new ApiServices();
             this.IsEnabled = true;
+            this.ImageSource = "productDefault";
         }
         #endregion
         #region Commands
+        public ICommand changeImageCommand
+        {
+            get
+            {
+                return new RelayCommand(changeImage);
+            }
+        }
+
+        private async void changeImage()
+        {
+            await CrossMedia.Current.Initialize();
+
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                Languages.ImageSource,
+                Languages.Cancel,
+                null,
+                Languages.FromGalery,
+                Languages.NewPicture);
+            if (source == Languages.Cancel)
+            {
+                this.file = null;
+                return;
+            }
+            if (source == Languages.NewPicture)
+            {
+                this.file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Sample",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
+                    }
+                   );
+            }
+            else
+            {
+                this.file = await CrossMedia.Current.PickPhotoAsync();
+            }
+            if(this.file != null)
+            {
+                this.ImageSource = ImageSource.FromStream(() =>
+                  {
+                      var stream = this.file.GetStream();
+                      return stream;
+                  });
+            }
+
+        }
+
         public ICommand SaveCommand
         {
             get
@@ -73,24 +136,35 @@ namespace food.ViewModels
                     Languages.Accept);
                 return;
             }
-            this.isRunning = true;
-            this.isEnabled = false;
+
+            this.IsRunning = true;
+            this.IsEnabled = false;
+
             var connection = await this.apiService.CheckConnection();
             if (!connection.IsSuccess)
             {
-                this.isRunning = false;
-                this.isEnabled = true;
+                this.IsRunning = false;
+                this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error, connection.Message,
                     Languages.Accept);
                 return;
 
             }
+
+            byte[] imageArray = null;
+            if (this.file != null)
+            {
+                imageArray = FilesHelper.ReadFully(this.file.GetStream());
+            }
+
+
             var product = new Product
             {
                 Description = this.Description,
                 Price=price,
                 Remarks=this.Remarks,
+                ImageArray=imageArray,
             };
 
             var url = Application.Current.Resources["UrlApi"].ToString();
@@ -99,8 +173,8 @@ namespace food.ViewModels
             var response = await this.apiService.Post(url, prefix, controller,product);
             if(!response.IsSuccess)
             {
-                this.isRunning = false;
-                this.isEnabled = true;
+                this.IsRunning = false;
+                this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error, 
                     response.Message,
@@ -112,8 +186,8 @@ namespace food.ViewModels
             viewModel.Products.Add(newProduct);
             //viewModel.Products = viewModel.Products.Orderby();
 
-            this.isRunning = false;
-            this.isEnabled = true;
+            this.IsRunning = false;
+            this.IsEnabled = true;
             await Application.Current.MainPage.Navigation.PopAsync();
         }
         #endregion
