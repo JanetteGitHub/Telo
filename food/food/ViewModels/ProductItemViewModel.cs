@@ -6,6 +6,7 @@ namespace food.ViewModels
     using System.Windows.Input;
     using common.Models;
     using food.Helpers;
+    using food.Views;
     using GalaSoft.MvvmLight.Command;
     using Services;
     using Xamarin.Forms;
@@ -24,6 +25,20 @@ namespace food.ViewModels
         #endregion
 
         #region Commands
+        public ICommand EditProductCommand
+        {
+            get
+            {
+                return new RelayCommand(EditProduct);
+            }
+        }
+
+        private async void EditProduct()
+        {
+            MainViewModel.GetInstance().EditProduct = new EditProductViewModel(this);
+            await Application.Current.MainPage.Navigation.PushAsync(new EditProductPage());
+        }
+
         public ICommand DeleteProductCommand
         {
             get
@@ -62,11 +77,12 @@ namespace food.ViewModels
                 return;
             }
             var productsViewModel = ProductsViewModel.GetInstance();
-            var deleteProduct = productsViewModel.Products.Where(p => p.ProductId == this.ProductId).FirstOrDefault();
+            var deleteProduct = productsViewModel.MyProducts.Where(p => p.ProductId == this.ProductId).FirstOrDefault();
             if (deleteProduct != null)
             {
-                productsViewModel.Products.Remove(deleteProduct);
+                productsViewModel.MyProducts.Remove(deleteProduct);
             }
+            productsViewModel.RefreshList();
         }
         #endregion
     }

@@ -131,7 +131,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_add_circle.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_chevron_right.png" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_paths.xml" />
   </ItemGroup>

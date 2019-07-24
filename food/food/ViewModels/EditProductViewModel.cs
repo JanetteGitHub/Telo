@@ -1,30 +1,35 @@
 ﻿
 namespace food.ViewModels
 {
-    using System.Windows.Input;
-    using Helpers;
-    using Services;
-    using GalaSoft.MvvmLight.Command;
-    using Xamarin.Forms;
     using food.common.Models;
+    using food.Helpers;
+    using food.Services;
+    using GalaSoft.MvvmLight.Command;
+    using Plugin.Media;
     using Plugin.Media.Abstractions;
     using System;
-    using Plugin.Media;
+    using System.Linq;
+    using System.Windows.Input;
+    using Xamarin.Forms;
 
-    public class AddProductViewModel:BaseViewModel
+    public class EditProductViewModel : BaseViewModel
     {
         #region Attributes
+        private Product product;
         private MediaFile file;
         private ImageSource imageSource;
         private ApiServices apiService;
         private bool isRunning;
         private bool isEnabled;
-
         #endregion
+
         #region Properties
-        public string Description { get; set; }
-        public string Price { get; set; }
-        public string Remarks { get; set; }
+        public Product Product
+        {
+            get { return this.product; }
+            set { this.SetValue(ref this.product, value); }
+            
+        }
         public bool IsRunning
         {
             get { return this.isRunning; }
@@ -41,17 +46,74 @@ namespace food.ViewModels
             set { this.SetValue(ref this.imageSource, value); }
         }
         #endregion
-
-        #region Constructors
-        public AddProductViewModel()
+        #region Contructors
+        public EditProductViewModel(Product product)
         {
-
+            this.product = product;
             this.apiService = new ApiServices();
             this.IsEnabled = true;
-            this.ImageSource = "productDefault";
+            this.ImageSource = product.ImageFullPath;
         }
         #endregion
-        #region Commands
+
+        #region Commands 
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(Delete);
+            }
+        }
+
+        private async void Delete()
+        {
+            var answer = await Application.Current.MainPage.DisplayAlert(
+                Languages.Confirm,
+                Languages.DeleteConfirmation,
+                Languages.Yes,
+                Languages.No);
+            if (!answer)
+            {
+                return;
+            }
+
+            this.IsEnabled = true;
+            this.IsEnabled = false;
+
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsEnabled = false;
+                this.IsEnabled = true;
+
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
+                return;
+            }
+
+            var url = Application.Current.Resources["UrlApi"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlProductsController"].ToString();
+            var response = await this.apiService.Delete(url, prefix, controller, this.Product.ProductId);
+            if (!response.IsSuccess)
+            {
+                this.IsEnabled = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+                return;
+            }
+            var productsViewModel = ProductsViewModel.GetInstance();
+            var deleteProduct = productsViewModel.MyProducts.Where(p => p.ProductId == this.Product.ProductId).FirstOrDefault();
+            if (deleteProduct != null)
+            {
+                productsViewModel.MyProducts.Remove(deleteProduct);
+            }
+
+            productsViewModel.RefreshList();
+            this.IsEnabled = false;
+            this.IsEnabled = true;
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
+
         public ICommand changeImageCommand
         {
             get
@@ -90,13 +152,13 @@ namespace food.ViewModels
             {
                 this.file = await CrossMedia.Current.PickPhotoAsync();
             }
-            if(this.file != null)
+            if (this.file != null)
             {
                 this.ImageSource = ImageSource.FromStream(() =>
-                  {
-                      var stream = this.file.GetStream();
-                      return stream;
-                  });
+                {
+                    var stream = this.file.GetStream();
+                    return stream;
+                });
             }
 
         }
@@ -111,7 +173,7 @@ namespace food.ViewModels
 
         private async void Save()
         {
-            if (string.IsNullOrEmpty(this.Description))
+            if (string.IsNullOrEmpty(this.Product.Description))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
@@ -119,16 +181,8 @@ namespace food.ViewModels
                     Languages.Accept);
                 return;
             }
-            if (string.IsNullOrEmpty(this.Price))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    Languages.Error,
-                    Languages.PriceError,
-                    Languages.Accept);
-                return;
-            }
-            var price = decimal.Parse(this.Price);
-            if (price < 0)
+         
+            if (this.Product.Price < 0)
             {
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
@@ -156,33 +210,32 @@ namespace food.ViewModels
             if (this.file != null)
             {
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
+                this.Product.ImageArray = imageArray;
             }
-
-
-            var product = new Product
-            {
-                Description = this.Description,
-                Price=price,
-                Remarks=this.Remarks,
-                ImageArray=imageArray,
-            };
 
             var url = Application.Current.Resources["UrlApi"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
-            var response = await this.apiService.Post(url, prefix, controller,product);
-            if(!response.IsSuccess)
+            var response = await this.apiService.Put(url, prefix, controller,this.Product,this.Product.ProductId);
+            if (!response.IsSuccess)
             {
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    Languages.Error, 
+                    Languages.Error,
                     response.Message,
                     Languages.Accept);
                 return;
             }
             var newProduct = (Product)response.Result;
             var productsViewModel = ProductsViewModel.GetInstance();
+
+            var oldProduct = productsViewModel.MyProducts.Where(p => p.ProductId == this.Product.ProductId).FirstOrDefault();
+            if(oldProduct !=null)
+            {
+                productsViewModel.MyProducts.Remove(newProduct);
+            }
+
             productsViewModel.MyProducts.Add(newProduct);
             productsViewModel.RefreshList();
             //viewModel.Products = viewModel.Products.Orderby();
