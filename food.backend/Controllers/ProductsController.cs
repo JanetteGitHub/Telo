@@ -12,6 +12,7 @@ namespace food.backend.Controllers
     using Models;
     using System;
 
+    [Authorize]
     public class ProductsController : Controller
     {
         private LocalDataContext db = new LocalDataContext();

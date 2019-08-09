@@ -14,6 +14,7 @@ namespace food.API.Controllers
     using Domain.Models;
     using food.API.Helpers;
 
+    [Authorize]
     public class ProductsController : ApiController
     {
         private DataContext db = new DataContext();

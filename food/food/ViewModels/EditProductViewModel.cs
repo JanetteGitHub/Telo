@@ -93,7 +93,7 @@ namespace food.ViewModels
             var url = Application.Current.Resources["UrlApi"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
-            var response = await this.apiService.Delete(url, prefix, controller, this.Product.ProductId);
+            var response = await this.apiService.Delete(url, prefix, controller, this.Product.ProductId, Settings.TokenType, Settings.AccessToken);
             if (!response.IsSuccess)
             {
                 this.IsEnabled = false;
@@ -111,7 +111,7 @@ namespace food.ViewModels
             productsViewModel.RefreshList();
             this.IsEnabled = false;
             this.IsEnabled = true;
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
         }
 
         public ICommand changeImageCommand
@@ -216,7 +216,7 @@ namespace food.ViewModels
             var url = Application.Current.Resources["UrlApi"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
-            var response = await this.apiService.Put(url, prefix, controller,this.Product,this.Product.ProductId);
+            var response = await this.apiService.Put(url, prefix, controller,this.Product,this.Product.ProductId, Settings.TokenType, Settings.AccessToken);
             if (!response.IsSuccess)
             {
                 this.IsRunning = false;
@@ -242,7 +242,7 @@ namespace food.ViewModels
 
             this.IsRunning = false;
             this.IsEnabled = true;
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
         }
         #endregion
     }
