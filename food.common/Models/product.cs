@@ -39,7 +39,7 @@ namespace food.common.Models
                 return "productDefault";
 
             }
-            return $"https://foodapi20190615091957.azurewebsites.net/{ this.ImagePath.Substring(1)}";
+            return $"https://foodapi20190807091922.azurewebsites.net/{ this.ImagePath.Substring(1)}";
 
 
 

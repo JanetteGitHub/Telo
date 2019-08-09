@@ -99,8 +99,9 @@ namespace food.ViewModels
             Settings.AccessToken = token.AccessToken;
             Settings.IsRemembered = this.IsRemembered;
 
-            MainViewModel.GetInstance().Products=new ProductsViewModel();
-            Application.Current.MainPage = new ProductsPage();
+            MainViewModel.GetInstance().Products = new ProductsViewModel();
+            Application.Current.MainPage = new MasterPage();
+
             this.IsRunning = false;
             this.IsEnabled = true;
 
