@@ -7,7 +7,9 @@
              mc:Ignorable="d"
              x:Class="food.Views.ProductsPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             Title="{i18n:Traslate Products}">
+             Title="{i18n:Traslate Products}" >
+            
+             
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_action_add_circle" Command="{Binding AddProductCommand}"/>
     </ContentPage.ToolbarItems>
@@ -16,13 +18,15 @@
             BindingContext="{Binding Products}"
             Padding="5">
             <SearchBar
+                Margin="40,0"
+                WidthRequest="30"
                 HeightRequest="30"
                 Placeholder="{i18n:Traslate Search}"
                 SearchCommand="{Binding SearchCommand}"
                 Text="{Binding Filter}">
-                
             </SearchBar>
             <ListView
+                WidthRequest="30"
                 HasUnevenRows="True"
                 IsRefreshing="{Binding IsRefreshing}"
                 IsPullToRefreshEnabled="True"

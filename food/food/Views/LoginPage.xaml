@@ -8,23 +8,30 @@
              x:Class="food.Views.LoginPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="{i18n:Traslate Login}">
+             
     <ContentPage.Content>
         <ScrollView
-            BindingContext="{Binding Login}">   
+            BindingContext="{Binding Login}">
             <StackLayout
                 Padding="5">
                 <Image
-                    HeightRequest="250"
-                    Source="foodgoodLogo">
+                    Source="foodgoodLogo"
+                    WidthRequest="200">
                 </Image>
                 <Grid
+                    ColumnSpacing="6"
+                    RowSpacing="6"
                     Margin="10,0"
                     VerticalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label                      
                         Grid.Row="0"
                         Grid.Column="0"
                         Text="{i18n:Traslate Email}"
@@ -34,7 +41,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Keyboard="Email"
-                        Text="{Binding Email}"
+                        Text="{Binding Email, Mode=TwoWay}"
                         Placeholder="{i18n:Traslate EmailPlaceHolder}"
                         VerticalOptions="Center">
                     </Entry>
@@ -47,8 +54,8 @@
                     <Entry
                         Grid.Row="1"
                         Grid.Column="1"
-                        IsPassword="True"
-                        Text="{Binding Password}"
+                        IsPassword="true"
+                        Text="{Binding Password, Mode=TwoWay}"
                         Placeholder="{i18n:Traslate PasswordPlaceHolder}"
                         VerticalOptions="Center">
                     </Entry>
@@ -63,7 +70,7 @@
                         VerticalOptions="Center">
                     </Label>
                     <Switch
-                        IsToggled="{Binding IsRemembered}"
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}"
                         HorizontalOptions="End">
                     </Switch>
                 </StackLayout>
@@ -71,13 +78,14 @@
                     HorizontalOptions="Center"
                     Text="{i18n:Traslate Forgot}"
                     TextColor="Blue"
+                    FontSize="Medium"
                     VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                     </Label.GestureRecognizers>
                 </Label>
                 <ActivityIndicator
-                    IsRunning="{Binding IsRunning}"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
                     VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
                 <StackLayout
@@ -90,17 +98,17 @@
                         Command="{Binding LoginCommand}"
                         HeightRequest="46"
                         HorizontalOptions="FillAndExpand"
-                        IsEnabled="{Binding IsEnabled}"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         Text="{i18n:Traslate Login}"
                         TextColor="White">
                     </Button>
                     <Button
-                        BackgroundColor="Purple"
+                        BackgroundColor="OrangeRed"
                         BorderRadius="23"
                         Command="{Binding RegisterCommand}"
                         HeightRequest="46"
                         HorizontalOptions="FillAndExpand"
-                        IsEnabled="{Binding IsEnabled}"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         Text="{i18n:Traslate Register}"
                         TextColor="White">
                     </Button>
@@ -111,9 +119,9 @@
                     VerticalOptions="EndAndExpand">
                     <Image
                         Aspect="AspectFit"
-                        HeightRequest="70"
+                        HeightRequest="60"
                         Source="facebook"
-                        WidthRequest="70">
+                        WidthRequest="60">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LoginFacebookCommand}"/>
                         </Image.GestureRecognizers>
