@@ -142,7 +142,7 @@
     <value>Insira a descrição do produto</value>
   </data>
   <data name="Price" xml:space="preserve">
-    <value>Preço</value>
+    <value>Preço:</value>
   </data>
   <data name="PricePlaceholder" xml:space="preserve">
     <value>Insira Preço de Produto</value>
@@ -245,5 +245,62 @@
   </data>
   <data name="PasswordPlaceHolder" xml:space="preserve">
     <value>Insira sua senha.</value>
+  </data>
+  <data name="NoProductsMessage" xml:space="preserve">
+    <value>Nenhuma informação de produtos disponível!</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefone</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Sobrenome</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Endereço:</value>
+  </data>
+  <data name="FirstNamePlaceholder" xml:space="preserve">
+    <value>Insira seu nome</value>
+  </data>
+  <data name="LastNamePlaceHolder" xml:space="preserve">
+    <value>Insira seu sobrenome</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>Insira o seu número de telefone</value>
+  </data>
+  <data name="AddressPlaceholder" xml:space="preserve">
+    <value>Digite seu endereço</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="PasswordConfirmPlaceholder" xml:space="preserve">
+    <value>Digite sua senha para confirmar</value>
+  </data>
+  <data name="FirstNameError" xml:space="preserve">
+    <value>- Digite um nome</value>
+  </data>
+  <data name="LastNameError" xml:space="preserve">
+    <value>- Digite um sobrenome</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>Deve inserir um endereço de email válido</value>
+  </data>
+  <data name="PhoneError" xml:space="preserve">
+    <value>Você deve digitar um número de telefone.</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>Digite uma senha.</value>
+  </data>
+  <data name="PasswordConfirmError" xml:space="preserve">
+    <value>Tem de introduzir uma palavra-passe</value>
+  </data>
+  <data name="PasswordNoMatch" xml:space="preserve">
+    <value>A senha e a confirmação devem ser iguais!</value>
+  </data>
+  <data name="RegisterConfirmation" xml:space="preserve">
+    <value>%0_G=M(((O %0 foi criado com sucesso.)))%0_G=F(((A %0 foi criada com sucesso.)))</value>
   </data>
 </root>

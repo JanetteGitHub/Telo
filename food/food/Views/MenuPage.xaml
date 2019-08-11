@@ -5,16 +5,13 @@
              x:Class="food.Views.MenuPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="{i18:Traslate Menu}"
-             BackgroundColor="WhiteSmoke">
+             BackgroundColor="BlueViolet">
     <ContentPage.Content>
         <StackLayout
             Padding="5">
             <Image
-                Source="usuario"
-                WidthRequest="200">
-            </Image>
-            <Image
-                Source="ic_foodgood">
+                Source="bag"
+                WidthRequest="250">
             </Image>
             <ListView
                 ItemsSource="{Binding Menu}"

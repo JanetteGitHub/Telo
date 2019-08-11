@@ -142,7 +142,7 @@
     <value>Immettere la descrizione del prodotto.</value>
   </data>
   <data name="Price" xml:space="preserve">
-    <value>Prezzo</value>
+    <value>Prezzo:</value>
   </data>
   <data name="PricePlaceholder" xml:space="preserve">
     <value>Inserisci il Prezzo del prodotto.</value>
@@ -151,7 +151,7 @@
     <value>Note:</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>&amp;Salva</value>
+    <value>Salva</value>
   </data>
   <data name="ChangeImage" xml:space="preserve">
     <value>Tocca l&amp;#39;immagine modificata!</value>
@@ -246,5 +246,62 @@ L'email o la password non sono valide!</value>
   </data>
   <data name="PasswordPlaceHolder" xml:space="preserve">
     <value>Immettere la password.</value>
+  </data>
+  <data name="NoProductsMessage" xml:space="preserve">
+    <value>Nessuna informazione sui prodotti disponibile!</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefono</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Cognome</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Indirizzo:</value>
+  </data>
+  <data name="FirstNamePlaceholder" xml:space="preserve">
+    <value>Immetti il tuo nome</value>
+  </data>
+  <data name="LastNamePlaceHolder" xml:space="preserve">
+    <value>Immetti il tuo cognome</value>
+  </data>
+  <data name="PhonePlaceholder" xml:space="preserve">
+    <value>Immetti il numero di telefono</value>
+  </data>
+  <data name="AddressPlaceholder" xml:space="preserve">
+    <value>Inserisci il tuo indirizzo</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Conferma</value>
+  </data>
+  <data name="PasswordConfirmPlaceholder" xml:space="preserve">
+    <value>Inserisci la password</value>
+  </data>
+  <data name="FirstNameError" xml:space="preserve">
+    <value>- Immettere un nome</value>
+  </data>
+  <data name="LastNameError" xml:space="preserve">
+    <value>- Immettere un cognome</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>Si deve inserire un indirizzo email valido.</value>
+  </data>
+  <data name="PhoneError" xml:space="preserve">
+    <value>Immettere un numero di telefono.</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>Specificare una password.</value>
+  </data>
+  <data name="PasswordConfirmError" xml:space="preserve">
+    <value>Devi inserire una password per confermare!</value>
+  </data>
+  <data name="PasswordNoMatch" xml:space="preserve">
+    <value>La password e la conferma devono essere uguali!</value>
+  </data>
+  <data name="RegisterConfirmation" xml:space="preserve">
+    <value>Tag creato correttamente!</value>
   </data>
 </root>
