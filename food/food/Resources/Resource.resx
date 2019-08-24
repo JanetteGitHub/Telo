@@ -130,16 +130,16 @@
     <value>No internet connection</value>
   </data>
   <data name="Products" xml:space="preserve">
-    <value>Products</value>
+    <value>service or business</value>
   </data>
   <data name="AddProduct" xml:space="preserve">
-    <value>Add Product</value>
+    <value>add service or business</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>service or business description</value>
   </data>
   <data name="DescriptionPlaceholder" xml:space="preserve">
-    <value>Enter the Product Description</value>
+    <value>write the description of the service or business</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
@@ -193,7 +193,7 @@
     <value>Confirm</value>
   </data>
   <data name="EditProduct" xml:space="preserve">
-    <value>Edit Product</value>
+    <value>Edit service or business </value>
   </data>
   <data name="IsAvailable" xml:space="preserve">
     <value>IsAvailable</value>
@@ -232,7 +232,7 @@
     <value>The Email or Password are not valid</value>
   </data>
   <data name="Menu" xml:space="preserve">
-    <value>Menu</value>
+    <value>service and business </value>
   </data>
   <data name="About" xml:space="preserve">
     <value>About</value>
@@ -247,7 +247,7 @@
     <value>Enter your Password</value>
   </data>
   <data name="NoProductsMessage" xml:space="preserve">
-    <value>No products information available</value>
+    <value>No service or business  information available</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
@@ -302,5 +302,8 @@
   </data>
   <data name="RegisterConfirmation" xml:space="preserve">
     <value>The user was created successfully</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
   </data>
 </root>

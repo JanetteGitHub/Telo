@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i18n="clr-namespace:food.Helpers"
+             mc:Ignorable="d"       
+             x:Class="food.Views.WelcomePage"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             Title="{i18n:Traslate Products}" >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_action_add_circle" Command="{Binding AddProductCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout 
+            BindingContext="{Binding Products}"
+            Padding="5">
+            <SearchBar
+                Margin="40,0"
+                WidthRequest="30"
+                HeightRequest="30"
+                Placeholder="{i18n:Traslate Search}"
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding Filter}">
+            </SearchBar>
+            <ListView
+                WidthRequest="30"
+                HasUnevenRows="True"
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                ItemsSource="{Binding Products}"
+                RefreshCommand="{Binding RefreshCommand}">
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

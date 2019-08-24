@@ -1,9 +1,9 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+﻿
 namespace food
 {
+    using System;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
     using Views;
     using ViewModels;
     using food.Helpers;
@@ -16,17 +16,18 @@ namespace food
         {
             InitializeComponent();
 
-
-            if (Settings.IsRemembered && !string.IsNullOrEmpty(Settings.AccessToken))
-            {
-                MainViewModel.GetInstance().Products = new ProductsViewModel();
-                MainPage = new MasterPage();
-            }
-            else
-            {
-                MainViewModel.GetInstance().Login = new LoginViewModel();
-                MainPage = new NavigationPage(new LoginPage());
-            }
+            MainViewModel.GetInstance().Login1 = new Login1ViewModel();
+            MainPage = new  Login1Page();
+            //if (Settings.IsRemembered && !string.IsNullOrEmpty(Settings.AccessToken))
+            //{
+            //    MainViewModel.GetInstance().Products = new ProductsViewModel();
+            //    MainPage = new MasterPage();
+            //}
+            //else
+            //{
+            //    MainViewModel.GetInstance().Login = new LoginViewModel();
+            //    MainPage = new NavigationPage(new LoginPage());
+            //}
 
            
         }

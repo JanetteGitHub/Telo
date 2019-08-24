@@ -13,13 +13,16 @@ namespace food.ViewModels
     public class MainViewModel
     {
         #region Properties
-
+        public Login1ViewModel Login1 { get; set; }
+        public WelcomePageViewModel WelcomePage { get; set; }
         public LoginViewModel Login {get;set;}
         public EditProductViewModel EditProduct { get; set; }
         public ProductsViewModel Products { get; set; }
         public AddProductViewModel AddProduct { get; set; }
         public RegisterViewModel Register { get; set; }
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
+
+        
         #endregion
 
         #region Constructors
@@ -27,7 +30,7 @@ namespace food.ViewModels
         {
 
             instance = this;
-            this.LoadMenu();
+            //this.LoadMenu();
         }
 
         #endregion

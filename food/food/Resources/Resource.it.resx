@@ -304,4 +304,7 @@ L'email o la password non sono valide!</value>
   <data name="RegisterConfirmation" xml:space="preserve">
     <value>Tag creato correttamente!</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Benvenuto</value>
+  </data>
 </root>

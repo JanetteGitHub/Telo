@@ -304,4 +304,7 @@ L'email ou le mot de passe n'est pas valide!</value>
   <data name="RegisterConfirmation" xml:space="preserve">
     <value>L'étiquette a été créée avec succès !</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>bienvenue</value>
+  </data>
 </root>

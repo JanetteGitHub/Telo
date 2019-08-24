@@ -274,7 +274,10 @@ namespace food.Helpers
         {
             get { return Resource.RegisterConfirmation; }
         }
+        public static string Welcome
+        {
+            get { return Resource.Welcome; }
+        }
 
-        
     }
 }

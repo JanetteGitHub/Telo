@@ -79,7 +79,7 @@ namespace food.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Add Product.
+        ///   Busca una cadena traducida similar a add service or business.
         /// </summary>
         public static string AddProduct {
             get {
@@ -151,7 +151,7 @@ namespace food.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Description.
+        ///   Busca una cadena traducida similar a service or business description.
         /// </summary>
         public static string Description {
             get {
@@ -169,7 +169,7 @@ namespace food.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Enter the Product Description.
+        ///   Busca una cadena traducida similar a write the description of the service or business.
         /// </summary>
         public static string DescriptionPlaceholder {
             get {
@@ -187,7 +187,7 @@ namespace food.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Edit Product.
+        ///   Busca una cadena traducida similar a Edit service or business .
         /// </summary>
         public static string EditProduct {
             get {
@@ -349,7 +349,7 @@ namespace food.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Menu.
+        ///   Busca una cadena traducida similar a service and business .
         /// </summary>
         public static string Menu {
             get {
@@ -385,7 +385,7 @@ namespace food.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a No products information available.
+        ///   Busca una cadena traducida similar a No service or business  information available.
         /// </summary>
         public static string NoProductsMessage {
             get {
@@ -520,7 +520,7 @@ namespace food.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Products.
+        ///   Busca una cadena traducida similar a service or business.
         /// </summary>
         public static string Products {
             get {
@@ -606,6 +606,15 @@ namespace food.Resources {
         public static string TurnOnInternet {
             get {
                 return ResourceManager.GetString("TurnOnInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Welcome.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
         

@@ -130,16 +130,16 @@
     <value>No hay conexión a Internet</value>
   </data>
   <data name="Products" xml:space="preserve">
-    <value>Productos</value>
+    <value>Servicio o negocio</value>
   </data>
   <data name="AddProduct" xml:space="preserve">
-    <value>Agregar producto</value>
+    <value>Agregar servicio o negocio</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Descripción:</value>
+    <value>Descripción del servicio o negocio</value>
   </data>
   <data name="DescriptionPlaceholder" xml:space="preserve">
-    <value>Escriba la descripción del producto</value>
+    <value>Escriba la descripción del servicio o negocio</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Precio:</value>
@@ -302,5 +302,8 @@
   </data>
   <data name="RegisterConfirmation" xml:space="preserve">
     <value>¡El usuario fue creado con éxito!</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenido</value>
   </data>
 </root>

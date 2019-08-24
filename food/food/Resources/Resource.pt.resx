@@ -303,4 +303,7 @@
   <data name="RegisterConfirmation" xml:space="preserve">
     <value>%0_G=M(((O %0 foi criado com sucesso.)))%0_G=F(((A %0 foi criada com sucesso.)))</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>bem-vindo</value>
+  </data>
 </root>
