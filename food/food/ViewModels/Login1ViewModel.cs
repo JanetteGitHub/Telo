@@ -14,10 +14,13 @@ namespace food.ViewModels
         private ApiServices apiService;
         private bool isRunning;
         private bool isEnabled;
+
         #endregion
 
         #region Properties
-
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public bool IsRemembered { get; set; }
 
         public bool IsRunning
         {
@@ -29,6 +32,7 @@ namespace food.ViewModels
             get { return this.isEnabled; }
             set { this.SetValue(ref this.isEnabled, value); }
         }
+
         #endregion
 
         #region Constructors
@@ -50,6 +54,7 @@ namespace food.ViewModels
                 return new RelayCommand(Login1);
             }
         }
+            
 
         private async void Login1()
         {
@@ -57,6 +62,9 @@ namespace food.ViewModels
             this.IsRunning = true;
             this.IsEnabled = false;
             var connection = await this.apiService.CheckConnection();
+
+
+
             if (!connection.IsSuccess)
             {
                 this.IsRunning = false;
@@ -66,7 +74,21 @@ namespace food.ViewModels
 
             }
 
-            var url = Application.Current.Resources["UrlApi"].ToString();
+            //var url = Application.Current.Resources["UrlApi"].ToString();
+            ////var token = await this.apiService.GetToken(url, this.Email, this.Password);
+           
+
+            //if (token == null || string.IsNullOrEmpty(token.AccessToken))
+            //{
+            //    this.IsRunning = false;
+            //    this.IsEnabled = true;
+            //    await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.SomethingWrong, Languages.Accept);
+            //    return;
+            //}
+
+            //Settings.TokenType = token.TokenType;
+            //Settings.AccessToken = token.AccessToken;
+            //Settings.IsRemembered = this.IsRemembered;
 
             MainViewModel.GetInstance().WelcomePage = new WelcomePageViewModel();
             Application.Current.MainPage = new WelcomePage();

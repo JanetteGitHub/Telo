@@ -9,6 +9,7 @@ namespace food.ViewModels
     using System.Threading.Tasks;
     using System.Windows.Input;
     using food.common.Models;
+    using food.Views;
     using GalaSoft.MvvmLight.Command;
     using Helpers;
     using Services;
@@ -50,6 +51,7 @@ namespace food.ViewModels
         #endregion
 
         #region Constructors
+
         public WelcomePageViewModel()
         {
             instance = this;
